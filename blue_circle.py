@@ -76,3 +76,4 @@ class BlueCircle(arcade.Sprite):
                     self.texture = arcade.load_texture("Images/red-circle.png")
                 self.life_timer = 5.0  # Reset the timer to 20 seconds
                 break
+#
