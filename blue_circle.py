@@ -3,7 +3,7 @@ import math
 
 from gold_polygon import GoldPolygon
 
-BLUE_CIRCLE_SPEED = 5
+BLUE_CIRCLE_SPEED = 3
 
 
 class BlueCircle(arcade.Sprite):
@@ -17,15 +17,29 @@ class BlueCircle(arcade.Sprite):
         self.polygons_eaten = 0
         self.life_timer = 5.0  # set the timer to 20 seconds
         self.closest_gold_polygon = None
+        self.polygons_eaten_hit_max = False
 
     def update(self, delta_time, gold_polygon_list):
         super().update()
 
         # Decrement the life timer by delta_time
         self.life_timer -= delta_time
-        if self.life_timer <= 0:
+        if self.life_timer <= 0 or self.polygons_eaten < 0:
             self.kill()  # Kill the sprite if the life timer is less than or equal to zero
             return
+
+        # Check if the blue circle has eaten enough polygons to start losing experience
+        if self.polygons_eaten >= 51 or self.polygons_eaten_hit_max == True:
+            self.polygons_eaten_hit_max = True
+            print(self.polygons_eaten)
+            if self.life_timer > 0:
+                # If the life timer is still running, reduce polygons_eaten by 1 every second
+                self.polygons_eaten -= delta_time * 2
+            else:
+                # If the life timer has expired, reset polygons_eaten to 0 and kill the sprite
+                self.polygons_eaten = 0
+                self.kill()
+                return
 
         # Calculate the distance between the blue circle and each gold polygon
         distances = []
@@ -76,4 +90,5 @@ class BlueCircle(arcade.Sprite):
                     self.texture = arcade.load_texture("Images/red-circle.png")
                 self.life_timer = 5.0  # Reset the timer to 20 seconds
                 break
+
 #
