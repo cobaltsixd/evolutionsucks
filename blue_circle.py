@@ -8,7 +8,7 @@ BLUE_CIRCLE_SPEED = 3
 
 class BlueCircle(arcade.Sprite):
     def __init__(self, screen_width, screen_height):
-        super().__init__("Images/blue-circle.png", center_x=screen_width, center_y=screen_height)
+        super().__init__("Images/red-circle.png", center_x=screen_width, center_y=screen_height)
         self.speed = BLUE_CIRCLE_SPEED
         self.change_x = self.speed
         self.change_y = self.speed
@@ -34,7 +34,7 @@ class BlueCircle(arcade.Sprite):
             print(self.polygons_eaten)
             if self.life_timer > 0:
                 # If the life timer is still running, reduce polygons_eaten by 1 every second
-                self.polygons_eaten -= delta_time * 2
+                self.polygons_eaten -= delta_time * 1.5
             else:
                 # If the life timer has expired, reset polygons_eaten to 0 and kill the sprite
                 self.polygons_eaten = 0

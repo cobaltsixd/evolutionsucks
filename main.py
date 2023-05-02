@@ -1,6 +1,7 @@
 import arcade
 from blue_circle import BlueCircle
 from gold_polygon import GoldPolygon
+
 from red_square import RedSquare
 from obstacle import Obstacle
 
@@ -17,13 +18,13 @@ class MyGame(arcade.Window):
         self.blue_circle = BlueCircle(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.blue_circle.center_x = 10
         self.blue_circle.center_y = 10
-        self.blue_circle.scale = 0.05
+        self.blue_circle.scale = 0.02
 
         # Create the red square and set its initial position
         self.red_square = RedSquare(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.red_square.center_x = 400
         self.red_square.center_y = 400
-        self.red_square.scale = .05
+        self.red_square.scale = .02
 
         # Create the gold polygons and add them to a sprite list
         self.gold_polygon_list = arcade.SpriteList()
